@@ -1,10 +1,13 @@
 {
-  "name": "poush_statiko",
+  "name": "statiko",
   "version": "1.0.0",
   "description": "A static API builder",
   "main": "index.js",
+  "bin": {
+    "statiko": "index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./scripts/install.sh"
   },
   "repository": {
     "type": "git",
@@ -15,13 +18,13 @@
     "api",
     "builder"
   ],
-  "scripts": {
-    "start": "./scripts/install.sh",
-  },
   "author": "Piyush Agrawal <me@ipiyush.com> (http://ipiyush.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/poush/statiko/issues"
   },
-  "homepage": "https://github.com/poush/statiko#readme"
+  "homepage": "https://github.com/poush/statiko#readme",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
 }

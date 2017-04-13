@@ -19,18 +19,18 @@ if [ ! -e "../.travis.yml" ]
 	fi
 
 
-read -p " sk: ==>  Enter your github token: " token
+# read -p " sk: ==>  Enter your github token: " token
 
 if [ $not_there == false ]
 	then
-		cp "../.travis.yml" "travis.yml"
+		cp "../.travis.yml" ".travis.yml"
 	fi
 	
-travis encrypt "GH_TOKEN={$token}" --add
-cp ".travis.yml" "../.travis.yml"
+# travis encrypt "GH_TOKEN={$token}" --add
+# cp ".travis.yml" "../.travis.yml"
 
 
-echo "\nMake sure to add your github repository url( without http or https )\ninto your 'env' section of .travis.yml. For example: \n========";
-echo "GIT_REPO=\"github.com/poush/statiko\"\n========\n"
+# echo "\nMake sure to add your github repository url( without http or https )\ninto your 'env' section of .travis.yml. For example: \n========";
+# echo "GIT_REPO=\"github.com/poush/statiko\"\n========\n"
 
-echo "\n Done! Enjoy! \n- Team Statiko 🎉"
+# echo "\n Done! Enjoy! \n- Team Statiko 🎉"
