@@ -1,0 +1,26 @@
+{
+  "name": "statiko",
+  "homepage": "https://github.com/poush/statiko",
+  "authors": [
+    "Piyush Agrawal <poush12@gmail.com>"
+  ],
+  "description": "A Static API builder",
+  "main": "",
+  "keywords": [
+    "static",
+    "api",
+    "builder",
+    "statiko"
+  ],
+  "scripts": {
+        "postinstall": "./scripts/build.sh"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
