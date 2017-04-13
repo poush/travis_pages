@@ -1,8 +1,11 @@
 # Basic Process for testing
 
-1. Clone this
-2. npm install
-3. ./scripts/install.sh
+npm install -g statiko
 
+1. statiko install
+2. statiko make
 
 ## Any bugs reports will be helpful to improve this.
+
+# WIP [ALPHA]
+

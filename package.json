@@ -1,11 +1,12 @@
 {
   "name": "statiko",
-  "version": "1.0.0",
+  "version": "0.0.21",
   "description": "A static API builder",
   "main": "index.js",
   "bin": {
     "statiko": "index.js"
   },
+  "preferGlobal": true,
   "scripts": {
     "start": "./scripts/install.sh"
   },
