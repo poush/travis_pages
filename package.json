@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/poush/statiko#readme",
   "dependencies": {
+    "fs-extra": "^2.1.2",
     "prompt": "^1.0.0"
   }
 }

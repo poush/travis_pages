@@ -7,10 +7,11 @@ if ! which travis > /dev/null
 		echo "\nsk: ====>Travis is already installed 😬 \nsk: ====>Try avoiding doing my work 😒 puri!\n"
 	fi
 
-if [ ! -e "../.travis.yml" ]
+if [ ! -e ".travis.yml" ]
 	then
 		not_there=true
-		travis init node --force --no-interactive --skip-enable --after-success="./scripts/deploy.sh"
+		cp "$1/.example.travis.yml" ".travis.yml"
+		# travis init node --force --no-interactive --skip-enable --after-success="./scripts/deploy.sh"
 		echo "\n sk: ====> .travis.yml created 🍻 arcgut!"
 	else
 		echo "\nsk: ====> .travis.yml is already created! abort creating file!!"
@@ -21,10 +22,10 @@ if [ ! -e "../.travis.yml" ]
 
 # read -p " sk: ==>  Enter your github token: " token
 
-if [ $not_there == false ]
-	then
-		cp "../.travis.yml" ".travis.yml"
-	fi
+# if [ $not_there == false ]
+# 	then
+# 		cp "../.travis.yml" ".travis.yml"
+# 	fi
 	
 # travis encrypt "GH_TOKEN={$token}" --add
 # cp ".travis.yml" "../.travis.yml"
