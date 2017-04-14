@@ -1,23 +1,22 @@
-not_there=false
+# not_there=false
 
-if ! which travis > /dev/null
-	then
-		sudo gem install travis
-	else
-		echo "\nsk: ====>Travis is already installed 😬 \nsk: ====>Try avoiding doing my work 😒 puri!\n"
-	fi
+# if ! which travis > /dev/null
+# 	then
+# 		sudo gem install travis
+# 	else
+# 		echo "\nsk: ====>Travis is already installed 😬 \nsk: ====>Try avoiding doing my work 😒 puri!\n"
+# 	fi
 
-if [ ! -e ".travis.yml" ]
-	then
-		not_there=true
-		cp "$1/.example.travis.yml" ".travis.yml"
-		# travis init node --force --no-interactive --skip-enable --after-success="./scripts/deploy.sh"
-		echo "\n sk: ====> .travis.yml created 🍻 arcgut!"
-	else
-		echo "\nsk: ====> .travis.yml is already created! abort creating file!!"
-		echo "Add below to your .travis.yml file\n========";
-		echo "after_success: \"./scripts/deploy.sh\"\n========\n"
-	fi
+# if [ ! -e ".travis.yml" ]
+# 	then
+# 		cp "$1/.example.travis.yml" ".travis.yml"
+# 		# travis init node --force --no-interactive --skip-enable --after-success="./scripts/deploy.sh"
+# 		echo "\n sk: ====> .travis.yml created 🍻 arcgut!"
+# 	else
+# 		echo "\nsk: ====> .travis.yml is already created! abort creating file!!"
+# 		echo "Add below to your .travis.yml file\n========";
+# 		echo "after_success: \"./scripts/deploy.sh\"\n========\n"
+# 	fi
 
 
 # read -p " sk: ==>  Enter your github token: " token
