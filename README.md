@@ -10,6 +10,8 @@ Currently in development. I would love to have this tested till this point to se
 * Link it with repository on github.com
 * run ```npm install -g statiko```
 * run ```statiko install``` to install statiko files on your project
+* creating any file inside ay directory within the project
+* commit your changes
 * run ```statiko make``` to create APIs
 
 ### Any bugs reports will be helpful to improve this.
