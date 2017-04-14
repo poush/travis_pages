@@ -3,3 +3,4 @@ npm-debug.log
 .travis.yml
 bower_components/
 statiko-deploy.sh
+api/
