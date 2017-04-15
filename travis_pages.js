@@ -34,7 +34,7 @@ module.exports = function(sender){
 
 	sPrefix = sender == null ? sPrefix : sender;
 
-	exec('which travis', (error, stdout, stderr) => {
+	exec('travis --version', (error, stdout, stderr) => {
 		
 		if( error != null )
 		{
