@@ -1,3 +1,4 @@
+travis login
 # not_there=false
 
 # if ! which travis > /dev/null

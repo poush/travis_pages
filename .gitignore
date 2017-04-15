@@ -4,3 +4,5 @@ npm-debug.log
 bower_components/
 statiko-deploy.sh
 api/
+.ssh.key
+.ssh.key.pub
