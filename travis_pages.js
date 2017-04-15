@@ -44,9 +44,17 @@ module.exports = function(sender){
 
 			exec('sudo gem install travis', (error, stdout, stderr) => {
 				if( error != null){
-					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis gem first and then retry. ")
-					process.exit();
+					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try for windows version ")
+					exec('gem install travis', (error, stdout, stderr) => {
+					if( error != null) {
+						console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis ")
+						process.exit();
+					}
+					});
+					
+				
 				}
+				
 				travis_login();
 			});
 		}
