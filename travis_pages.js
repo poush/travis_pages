@@ -35,17 +35,20 @@ module.exports = function(sender){
 	sPrefix = sender == null ? sPrefix : sender;
 
 	exec('travis --version', (error, stdout, stderr) => {
-			/*
-			* for installing travis on windows 
-			*/
-		
+			
 			if( error != null )
 			{
 				process.stdout.write(colors.rainbow(sPrefix + " => ") + "Installing Travis First!! \n");
 
 				console.warn("===>  gem install travis".warn);
+			
+			var travis_install_cmd = 'gem install travis'	
+			/*
+			* for installing travis on windows 
+			*/
+		      
 				if(process.platform === "win32") {
-						exec('gem install travis', (error, stdout, stderr) => {
+						exec(travis_install_cmd, (error, stdout, stderr) => {
 								if( error != null) {
 									console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis ")
 									process.exit();
@@ -59,8 +62,9 @@ module.exports = function(sender){
 			* for installing travis on linux and mac 
 			*/
 			else {
+				travis_install_cmd = 'sudo ' +travis_install_cmd;
 				console.warn("===>  sudo gem install travis".warn);
-				exec('sudo gem install travis', (error, stdout, stderr) => {
+				exec(travis_install_cmd, (error, stdout, stderr) => {
 				if( error != null){
 					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis ")
 	
