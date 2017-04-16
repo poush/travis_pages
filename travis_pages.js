@@ -34,15 +34,20 @@ module.exports = function(sender){
 
 	sPrefix = sender == null ? sPrefix : sender;
 
-	exec('which travis', (error, stdout, stderr) => {
+	exec('travis --version', (error, stdout, stderr) => {
 		
-		if( error != null )
+		if( error !== null )
 		{
 			process.stdout.write(colors.rainbow(sPrefix + " => ") + "Installing Travis First!! \n");
+			var travis_install_cmd = 'gem install travis'
 			
-			console.warn("===>  sudo gem install travis".warn);
-
-			exec('sudo gem install travis', (error, stdout, stderr) => {
+			//using sudo if OS is not windows
+			if(process.platform != "win32")
+				travis_install_cmd = 'sudo ' + travis_install_cmd; 
+				
+			console.warn( ("===>  " + travis_install_cmd).warn);
+			
+			exec(travis_install_cmd, (error, stdout, stderr) => {
 				if( error != null){
 					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis gem first and then retry. ")
 					process.exit();
