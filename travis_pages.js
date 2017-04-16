@@ -36,7 +36,7 @@ module.exports = function(sender){
 
 	exec('travis --version', (error, stdout, stderr) => {
 		
-		if( error != null )
+		if( error !== null )
 		{
 			process.stdout.write(colors.rainbow(sPrefix + " => ") + "Installing Travis First!! \n");
 			var travis_install_cmd = 'gem install travis'
