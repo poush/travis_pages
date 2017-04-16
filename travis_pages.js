@@ -41,20 +41,12 @@ module.exports = function(sender){
 			process.stdout.write(colors.rainbow(sPrefix + " => ") + "Installing Travis First!! \n");
 			var travis_install_cmd = 'gem install travis'
 			
-			/*
-			* if os is not windows ,
-			* try for linux and mac
-			*/
+			//using sudo if OS is not windows
 			if(process.platform != "win32") {
 				travis_install_cmd = 'sudo ' + travis_install_cmd; 
-				console.warn("===>  sudo gem install travis".warn);
-			}
+				
+			console.warn( ("===>  " + travis_install_cmd).warn);
 			
-			else {
-				console.warn("===>  gem install travis".warn);
-			}
-			
-
 			exec(travis_install_cmd, (error, stdout, stderr) => {
 				if( error != null){
 					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis gem first and then retry. ")
