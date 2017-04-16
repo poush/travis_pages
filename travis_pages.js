@@ -42,7 +42,7 @@ module.exports = function(sender){
 			var travis_install_cmd = 'gem install travis'
 			
 			//using sudo if OS is not windows
-			if(process.platform != "win32") {
+			if(process.platform != "win32")
 				travis_install_cmd = 'sudo ' + travis_install_cmd; 
 				
 			console.warn( ("===>  " + travis_install_cmd).warn);
