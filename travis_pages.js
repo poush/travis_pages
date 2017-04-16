@@ -34,19 +34,44 @@ module.exports = function(sender){
 
 	sPrefix = sender == null ? sPrefix : sender;
 
-	exec('which travis', (error, stdout, stderr) => {
-		
-		if( error != null )
-		{
-			process.stdout.write(colors.rainbow(sPrefix + " => ") + "Installing Travis First!! \n");
+	exec('travis --version', (error, stdout, stderr) => {
 			
-			console.warn("===>  sudo gem install travis".warn);
+			if( error != null )
+			{
+				process.stdout.write(colors.rainbow(sPrefix + " => ") + "Installing Travis First!! \n");
 
-			exec('sudo gem install travis', (error, stdout, stderr) => {
-				if( error != null){
-					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis gem first and then retry. ")
-					process.exit();
+				console.warn("===>  gem install travis".warn);
+			
+			var travis_install_cmd = 'gem install travis'	
+			/*
+			* for installing travis on windows 
+			*/
+		      
+				if(process.platform === "win32") {
+						exec(travis_install_cmd, (error, stdout, stderr) => {
+								if( error != null) {
+									console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis ")
+									process.exit();
+								}
+
+								});
 				}
+			
+			
+			/*
+			* for installing travis on linux and mac 
+			*/
+			else {
+				travis_install_cmd = 'sudo ' +travis_install_cmd;
+				console.warn("===>  sudo gem install travis".warn);
+				exec(travis_install_cmd, (error, stdout, stderr) => {
+				if( error != null){
+					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis ")
+	
+				}
+			}
+
+				
 				travis_login();
 			});
 		}
