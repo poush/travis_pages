@@ -1,21 +1,10 @@
 var exec = require('child_process').exec;
 const fs = require('fs-extra');
-var prompt = require('prompt');
 var colors = require('colors');
 var path = require('path');
+var prompt = require('./support/prompt')
 
 require('./config/config')
-
-
-var schema = {
-  properties: {
-    key: {
-      description: "Enter your Github SSH Key",
-      required: true,
-      message: "Required!"
-    }
-  }
-}
 
 var sPrefix = "tP"
 
@@ -30,7 +19,7 @@ var sPrefix = "tP"
 
 
 
-module.exports = function(sender){
+module.exports = function(sender, options){
 
 	sPrefix = sender == null ? sPrefix : sender;
 
@@ -52,30 +41,30 @@ module.exports = function(sender){
 					console.error( colors.rainbow(sPrefix + " => ") + "oh BBoy! There is some issue on installing. Try installing travis gem first and then retry. ")
 					process.exit();
 				}
-				travis_login();
+				travis_login(options);
 			});
 		}
 		else
 		{
 			process.stdout.write( colors.rainbow(sPrefix + " => ") + "Travis is already installed 😬 puri! \n" );
-			travis_login();
+			travis_login(options);
 		}
 	})
 }
 
-var travis_login = () => {
+var travis_login = (options) => {
 
 	exec('travis whoami', (err, stdout, stderr) => {
 
 		if( err != null )
 			console.error( "Please login into travis first. Run \n\t ".error + "travis login".info + "\n then continue".error );
 		else
-			continue_install();
+			continue_install(options);
 	});
 
 }
 
-var continue_install = () => {
+var continue_install = (options) => {
 
 	// prompt.start();
 // 
@@ -130,14 +119,22 @@ var continue_install = () => {
 			if( fs.existsSync( process.cwd() + '/.travis.yml' ) )
 			{
 
-				fs.copySync(__dirname + '/scripts/deploy.sh', process.cwd() +'/statiko-deploy.sh');
+				fs.copySync(__dirname + '/scripts/deploy.sh', process.cwd() +'/deploy.sh');
 
-				//SEE LINE 93 for this
-				process.stdout.write("\nMake sure to add your github repository url( without http or https )\ninto your 'env' section of .travis.yml. For example: \n========\n");
-				process.stdout.write("GIT_REPO=\"github.com/poush/statiko\"\n========\n");
-				// Must be automated
+				prompt.askRepo( (answer) => {
+					// console.log( answer );
+					// travis.add_env_var('GIT_REPO', answer);
+					if( options.after_success == undefined )
+						prompt.askAfterSuccess( (answer)=> {
+							// travis.add_after_success( answer );
+							console.log( answer )
+							process.stdout.write("\n Done! Enjoy! \n- Team Statiko 🎉 ");
+						});
+					else
+						console.log('@TODO')
+						// travis.add_after_success( options.after_success );
+				});
 
-				process.stdout.write("\n Done! Enjoy! \n- Team Statiko 🎉 ");
 			}
 		});
 

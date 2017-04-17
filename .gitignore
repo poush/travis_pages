@@ -3,6 +3,7 @@ npm-debug.log
 .travis.yml
 bower_components/
 statiko-deploy.sh
+deploy.sh
 api/
 .ssh.key
 .ssh.key.pub

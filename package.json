@@ -23,6 +23,7 @@
   "homepage": "https://github.com/poush/travis_pages#readme",
   "dependencies": {
     "fs-extra": "^2.1.2",
+    "inquirer": "^3.0.6",
     "prompt": "^1.0.0"
   }
 }
