@@ -3,6 +3,8 @@ const fs = require('fs-extra');
 var colors = require('colors');
 var path = require('path');
 var prompt = require('./support/prompt')
+var travis = require('./support/travis_parser')
+travis = new travis();
 
 require('./config/config')
 
@@ -22,6 +24,7 @@ var sPrefix = "tP"
 module.exports = function(sender, options){
 
 	sPrefix = sender == null ? sPrefix : sender;
+	options = options == null ? {} : options;
 
 	exec('travis --version', (error, stdout, stderr) => {
 		
@@ -74,16 +77,16 @@ var continue_install = (options) => {
 	if(  !fs.existsSync(process.cwd() + '/.travis.yml') ){
 
 		fs.copySync( __dirname + "/.example.travis.yml", process.cwd() + '/.travis.yml');
-		process.stdout.write(colors.rainbow( sPrefix + " => ") + ".travis.yml Created! 🍻 arcgut!\n");				
+		process.stdout.write(colors.rainbow( sPrefix + " => ") + ".travis.yml Created! 🍻 arcgut!\n");
+		travis.load();				
 
 	}
 	else{
 			// If file already exsists
 			console.log("\n" + colors.rainbow( sPrefix + " => ") + ".travis.yml is already created! abort creating new file!!");
-			
+			travis.load();
+
 			// @TODO: ADD YML parser to add this part into travis file
-			// var travis = require('./support/travis_parse')
-			
 			// Prompt user for github_repo then add to travis_file
 			// var obj = travis.obj()
 			// update obj with desired changes
@@ -126,13 +129,13 @@ var continue_install = (options) => {
 					// travis.add_env_var('GIT_REPO', answer);
 					if( options.after_success == undefined )
 						prompt.askAfterSuccess( (answer)=> {
-							// travis.add_after_success( answer );
+							travis.load()
+							travis.add_after_success( answer );
 							console.log( answer )
 							process.stdout.write("\n Done! Enjoy! \n- Team Statiko 🎉 ");
 						});
 					else
-						console.log('@TODO')
-						// travis.add_after_success( options.after_success );
+						travis.add_after_success( options.after_success );
 				});
 
 			}
