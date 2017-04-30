@@ -1,6 +1,6 @@
 {
   "name": "travis_pages",
-  "version": "0.0.1",
+  "version": "0.0.15",
   "description": "Automating gh-pages using travis",
   "main": "travis_pages.js",
   "bin": {
